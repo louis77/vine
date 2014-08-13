@@ -11,7 +11,7 @@ end
 
 class Hash
   
-  def access(path)
+  def access(path, default=nil)
     ret = self
     path.split('.').each do |p|
       if p.to_i.to_s == p
@@ -19,7 +19,7 @@ class Hash
       else
         ret = ret[p.to_s] || ret[p.to_sym]
       end
-      break unless ret
+      return default unless ret
     end
     ret
   end
